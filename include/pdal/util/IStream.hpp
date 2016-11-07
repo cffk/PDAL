@@ -216,16 +216,22 @@ public:
 
       \param buf  Buffer to fill.
     */
-    PDAL_DLL void get(std::vector<char>& buf)
-        { m_stream->read(&buf[0], buf.size()); }
+    PDAL_DLL void get(std::vector<char>& buf) {
+		if (buf.size() > 0) {
+			m_stream->read((char *)&buf[0], buf.size());
+		}
+	}
 
     /**
       Fetch data from the stream into a vector of unsigned char.
 
       \param buf  Buffer to fill.
     */
-    PDAL_DLL void get(std::vector<unsigned char>& buf)
-        { m_stream->read((char *)&buf[0], buf.size()); }
+	PDAL_DLL void get(std::vector<unsigned char>& buf) {
+		if (buf.size() > 0) {
+			m_stream->read((char *)&buf[0], buf.size());
+		}
+	}
 
     /**
       Fetch data from the stream into the specified buffer of char.
